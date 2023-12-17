@@ -3,8 +3,10 @@ package ru.lesson.stream;
 import ru.lesson.stream.dto.Employee;
 import ru.lesson.stream.dto.PositionType;
 
+import static java.util.stream.Collectors.*;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LessonStreamApi {
 
@@ -14,7 +16,10 @@ public class LessonStreamApi {
      * Важно: Необходимо учесть, что List<Employee> employees может содержать дублирующие записи.
      */
     public List<Employee> task1(List<Employee> employees) {
-        return null;
+        return employees.stream()
+                .distinct()
+                .filter(e -> e.getRating() > 50)
+                .collect(toList());
     }
 
     /**
@@ -23,7 +28,12 @@ public class LessonStreamApi {
      * У которых рейтинг {@link Employee#getRating()} меньше 50.
      */
     public List<String> task2(List<Employee> employees) {
-        return null;
+
+        return employees.stream()
+                .distinct()
+                .filter(e -> e.getRating() < 50)
+                .map(e -> String.format(e.getName() + "=" + e.getRating()))
+                .collect(toList());
     }
 
     /**
@@ -31,7 +41,9 @@ public class LessonStreamApi {
      * Получить средний рейтнг всех сотрудников.
      */
     public double task3(List<Employee> employees) {
-        return 0.0;
+
+        return employees.stream()
+                ;
     }
 
     /**
